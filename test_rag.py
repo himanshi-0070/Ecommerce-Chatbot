@@ -1,15 +1,16 @@
-from embeddings.embed_store import load_and_split_csv, build_vector_store
-from embeddings.vector_store import search_similar_chunks
-from rag.rag_pipeline import rag_ask
+# main.py
+from fastapi import FastAPI
+from pydantic import BaseModel
+from rag_engine import build_prompt
+from llm_wrapper import generate_response
 
-# Step 1: Index the data (run only once, or when data updates)
-chunks = load_and_split_csv("data/Product_Information_Dataset (1).csv")
-build_vector_store(chunks)
+app = FastAPI()
 
-# Step 2: Query & get response
-query = "What are the top 5 highly-rated guitar products?"
-retrieved = search_similar_chunks(query)
-response = rag_ask(query, retrieved)
+class Query(BaseModel):
+    user_input: str
 
-print("\n🔍 Retrieved Chunks:\n", retrieved)
-print("\n🤖 LLM Response:\n", response)
+@app.post("/chat")
+def chat(query: Query):
+    prompt = build_prompt(query.user_input)
+    response = generate_response(prompt)
+    return {"response": response}
