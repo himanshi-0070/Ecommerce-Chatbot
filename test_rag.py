@@ -1,8 +1,8 @@
 # main.py
 from fastapi import FastAPI
 from pydantic import BaseModel
-from rag_engine import build_prompt
-from llm_wrapper import generate_response
+from rag.rag_pipeline import build_prompt
+from llm.llm_wrapper import generate_response
 
 app = FastAPI()
 
