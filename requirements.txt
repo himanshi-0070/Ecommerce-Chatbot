@@ -1,0 +1,8 @@
+requests
+openai
+chromadb
+sentence-transformers
+fastapi
+uvicorn
+python-dotenv
+pandas
