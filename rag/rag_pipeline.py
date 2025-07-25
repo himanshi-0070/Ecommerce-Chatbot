@@ -1,8 +1,8 @@
 import pandas as pd
 import os
 
-PRODUCTS_CSV = "data/products.csv"
-ORDERS_CSV = "data/orders.csv"
+PRODUCTS_CSV = "data/Product_Information_Dataset(1).csv"
+ORDERS_CSV = "data/Order_Data_Dataset(1).csv"
 
 def load_context():
     context = ""
